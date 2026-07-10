@@ -42,6 +42,13 @@ h1 .it{font-style:italic;color:var(--amber)}
 .btn-ghost{font-size:13px;letter-spacing:.1em;color:var(--dim);border-bottom:1px solid var(--line);padding-bottom:3px;transition:.3s}
 .btn-ghost:hover{color:var(--ink)}
 
+/* hero art */
+.hero-art{position:absolute;right:-2vw;top:60px;height:calc(100vh - 160px);max-height:820px;z-index:1;opacity:.9;pointer-events:none;
+  filter:invert(.93) sepia(.25) brightness(1.02);
+  -webkit-mask-image:radial-gradient(ellipse 58% 58% at 50% 42%,#000 35%,transparent 74%);
+  mask-image:radial-gradient(ellipse 58% 58% at 50% 42%,#000 35%,transparent 74%)}
+@media(max-width:900px){.hero-art{opacity:.35;right:-20vw}}
+
 /* waveform */
 .wave{position:absolute;bottom:0;left:0;right:0;height:120px;display:flex;align-items:flex-end;gap:5px;padding:0 6vw;opacity:.5}
 .wave span{flex:1;background:linear-gradient(to top,var(--amber-dim),rgba(232,179,75,.45));border-radius:3px 3px 0 0;animation:pulse 1.6s ease-in-out infinite}
@@ -82,13 +89,18 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.6
 .host p{font-size:13.5px;color:var(--dim)}
 
 /* pricing */
-.price-box{border:1px solid var(--line);border-radius:6px;padding:70px 8%;text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));margin-top:20px}
-.price{font-family:'Instrument Serif',serif;font-size:clamp(56px,8vw,86px);line-height:1}
-.price small{font-size:22px;color:var(--dim);font-family:'Zen Kaku Gothic New',sans-serif}
-.price-note{font-size:13px;color:var(--dim);margin:20px 0 40px}
-.perks{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-bottom:46px}
-.perk{font-size:13px;color:var(--dim)}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.plan{border:1px solid var(--line);border-radius:6px;padding:52px 44px;background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.plan.premium{border-color:rgba(232,179,75,.5);background:linear-gradient(180deg,#1a1510,var(--bg));position:relative}
+.plan-tag{font-size:10.5px;letter-spacing:.3em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+.price{font-family:'Instrument Serif',serif;font-size:clamp(44px,5vw,60px);line-height:1}
+.price small{font-size:18px;color:var(--dim);font-family:'Zen Kaku Gothic New',sans-serif}
+.price-note{font-size:12px;color:var(--dim);margin:14px 0 30px}
+.perks{list-style:none;margin-bottom:38px}
+.perk{font-size:13px;color:var(--dim);padding:7px 0;border-bottom:1px solid var(--line)}
 .perk::before{content:"— ";color:var(--amber)}
+.perk strong{color:var(--ink);font-weight:500}
+@media(max-width:720px){.plans{grid-template-columns:1fr}}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:60px 0;font-size:12px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
@@ -121,6 +133,7 @@ footer{border-top:1px solid var(--line);padding:60px 0;font-size:12px;color:var(
 </nav>
 
 <header class="hero">
+  <img class="hero-art" src="hdr_kv.webp" alt="Sean Kawakami">
   <div class="wrap" style="position:relative;z-index:2">
     <p class="kicker en">A Weekly Audio Program · Sean Kawakami × Ayia</p>
     <h1 class="en">MOVE<span class="it">.</span></h1>
@@ -198,7 +211,7 @@ footer{border-top:1px solid var(--line);padding:60px 0;font-size:12px;color:var(
     <h2>ふたりの声</h2>
     <div class="hosts">
       <div class="host">
-        <div class="avatar">Sean</div>
+        <div class="avatar" style="background:#e9e7e2 url('hdr_kv.webp') center 18%/cover no-repeat"></div>
         <h3>ショーン川上</h3>
         <p class="role en">Host / Management Consultant</p>
         <p>経営コンサルタント。30年以上にわたり国際ビジネスの最前線で1,000人を超える経営者・プロフェッショナルと対話。J-WAVE「MAKE IT NEXT」ナビゲーター。著書『英語力の核心』（アルク）。</p>
@@ -217,18 +230,33 @@ footer{border-top:1px solid var(--line);padding:60px 0;font-size:12px;color:var(
   <div class="wrap">
     <p class="sec-label en">Membership</p>
     <h2>毎週金曜、あなたの耳に。</h2>
-    <div class="price-box">
-      <p class="price en">¥980<small> / 月</small></p>
-      <p class="price-note">年額プラン ¥9,800（2カ月分お得）· いつでも解約できます</p>
-      <div class="perks">
-        <span class="perk">週1回の音声番組</span>
-        <span class="perk">テキスト解説</span>
-        <span class="perk">過去回アーカイブ聴き放題</span>
-        <span class="perk">月1回のQ&A回</span>
+    <div class="plans">
+      <div class="plan">
+        <p class="plan-tag en">Member</p>
+        <p class="price en">¥1,980<small> / 月</small></p>
+        <p class="price-note">いつでも解約できます</p>
+        <ul class="perks">
+          <li class="perk">週1回の音声番組（10分）</li>
+          <li class="perk">テキスト解説フル版</li>
+          <li class="perk">過去回アーカイブ聴き放題</li>
+          <li class="perk">月1回のQ&A回</li>
+        </ul>
+        <button class="btn-play en">SUBSCRIBE →</button>
       </div>
-      <button class="btn-play en" style="margin:0 auto">SUBSCRIBE ON SUBSTACK →</button>
-      <p style="font-size:11.5px;color:var(--dim);margin-top:22px">まずは無料版から。月1回の無料配信をメールでお届けします。</p>
+      <div class="plan premium">
+        <p class="plan-tag en">Premium</p>
+        <p class="price en">¥9,800<small> / 月</small></p>
+        <p class="price-note">メンバー特典のすべてに加えて</p>
+        <ul class="perks">
+          <li class="perk"><strong>月1回、オリジナル音声データを配布</strong></li>
+          <li class="perk">番組使用のAI楽曲・未公開ロングバージョン等</li>
+          <li class="perk">プレミアム限定回</li>
+          <li class="perk">Seanへの質問優先権</li>
+        </ul>
+        <button class="btn-play en">GO PREMIUM →</button>
+      </div>
     </div>
+    <p style="font-size:11.5px;color:var(--dim);margin-top:24px">まずは無料版から。月1回の無料配信をメールでお届けします。</p>
   </div>
 </section>
 
