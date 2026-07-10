@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVE — 相手が動く英語 | Sean Kawakami × Ayia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0d; --bg2:#101016; --ink:#f2f0ea; --dim:#8b8a93;
+  --line:rgba(242,240,234,.12); --amber:#e8b34b; --amber-dim:rgba(232,179,75,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New','Inter',sans-serif;font-weight:300;line-height:1.9;-webkit-font-smoothing:antialiased}
+.en{font-family:'Inter',sans-serif}
+.serif{font-family:'Instrument Serif',serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 6vw}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,13,.6);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:18px 6vw;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:.04em}
+.logo i{color:var(--amber)}
+.nav-cta{font-size:12.5px;letter-spacing:.14em;border:1px solid var(--line);padding:9px 22px;border-radius:100px;transition:.3s}
+.nav-cta:hover{border-color:var(--amber);color:var(--amber)}
+
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding-top:80px}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 70% 20%,rgba(232,179,75,.07),transparent 60%)}
+.kicker{font-size:12px;letter-spacing:.34em;color:var(--amber);text-transform:uppercase;margin-bottom:34px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(72px,14vw,180px);line-height:.95;letter-spacing:-.01em}
+h1 .it{font-style:italic;color:var(--amber)}
+.hero-sub{margin-top:38px;font-size:clamp(16px,2vw,21px);letter-spacing:.06em;color:var(--ink)}
+.hero-desc{margin-top:14px;font-size:14px;color:var(--dim);max-width:560px}
+.hero-actions{margin-top:52px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.btn-play{display:flex;align-items:center;gap:16px;background:var(--amber);color:#171204;padding:16px 34px;border-radius:100px;font-weight:500;font-size:14.5px;letter-spacing:.06em;transition:.3s;cursor:pointer;border:none}
+.btn-play:hover{transform:scale(1.04)}
+.btn-play .tri{width:0;height:0;border-left:11px solid #171204;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.btn-ghost{font-size:13px;letter-spacing:.1em;color:var(--dim);border-bottom:1px solid var(--line);padding-bottom:3px;transition:.3s}
+.btn-ghost:hover{color:var(--ink)}
+
+/* waveform */
+.wave{position:absolute;bottom:0;left:0;right:0;height:120px;display:flex;align-items:flex-end;gap:5px;padding:0 6vw;opacity:.5}
+.wave span{flex:1;background:linear-gradient(to top,var(--amber-dim),rgba(232,179,75,.45));border-radius:3px 3px 0 0;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+
+/* sections */
+section{padding:130px 0;border-top:1px solid var(--line);position:relative}
+.sec-label{font-size:11px;letter-spacing:.34em;color:var(--amber);text-transform:uppercase;margin-bottom:26px}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.6vw,54px);line-height:1.25;letter-spacing:.01em;margin-bottom:34px}
+.lead{font-size:15.5px;color:var(--dim);max-width:640px}
+.lead strong{color:var(--ink);font-weight:400}
+
+/* concept grid */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);margin-top:70px;border:1px solid var(--line)}
+.cell{background:var(--bg);padding:44px 36px}
+.cell .num{font-family:'Instrument Serif',serif;font-style:italic;font-size:30px;color:var(--amber);margin-bottom:20px}
+.cell h3{font-size:16px;font-weight:500;letter-spacing:.06em;margin-bottom:14px}
+.cell p{font-size:13.5px;color:var(--dim)}
+
+/* episodes */
+.ep{display:flex;align-items:center;gap:28px;padding:30px 0;border-bottom:1px solid var(--line);transition:.3s}
+.ep:hover{padding-left:12px}
+.ep-play{flex-shrink:0;width:52px;height:52px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s;cursor:pointer}
+.ep:hover .ep-play{border-color:var(--amber);background:var(--amber-dim)}
+.ep-play .tri{width:0;height:0;border-left:9px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.ep-meta{font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.ep-title{font-size:17px;font-weight:400;letter-spacing:.03em}
+.ep-dur{margin-left:auto;font-size:12px;color:var(--dim);flex-shrink:0}
+.free-tag{display:inline-block;font-size:10px;letter-spacing:.16em;color:var(--amber);border:1px solid rgba(232,179,75,.4);border-radius:100px;padding:2px 10px;margin-left:12px;vertical-align:2px}
+
+/* hosts */
+.hosts{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px}
+.host .avatar{width:100%;aspect-ratio:4/3;border:1px solid var(--line);border-radius:4px;background:
+  radial-gradient(circle at 30% 40%,rgba(232,179,75,.12),transparent 55%),var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:42px;color:var(--dim);margin-bottom:28px}
+.host h3{font-size:19px;font-weight:500;letter-spacing:.04em}
+.host .role{font-size:11px;letter-spacing:.26em;color:var(--amber);text-transform:uppercase;margin:8px 0 16px}
+.host p{font-size:13.5px;color:var(--dim)}
+
+/* pricing */
+.price-box{border:1px solid var(--line);border-radius:6px;padding:70px 8%;text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));margin-top:20px}
+.price{font-family:'Instrument Serif',serif;font-size:clamp(56px,8vw,86px);line-height:1}
+.price small{font-size:22px;color:var(--dim);font-family:'Zen Kaku Gothic New',sans-serif}
+.price-note{font-size:13px;color:var(--dim);margin:20px 0 40px}
+.perks{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-bottom:46px}
+.perk{font-size:13px;color:var(--dim)}
+.perk::before{content:"— ";color:var(--amber)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:60px 0;font-size:12px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+
+/* sticky player */
+.player{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(16,16,22,.92);backdrop-filter:blur(16px);border-top:1px solid var(--line);transform:translateY(100%);transition:.45s cubic-bezier(.2,.8,.2,1)}
+.player.on{transform:translateY(0)}
+.player-in{max-width:1120px;margin:0 auto;padding:14px 6vw;display:flex;align-items:center;gap:20px}
+.p-btn{width:40px;height:40px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.p-btn .tri{width:0;height:0;border-left:8px solid #171204;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.p-btn .pause{display:none;width:10px;height:12px;border-left:3px solid #171204;border-right:3px solid #171204}
+.player.playing .p-btn .tri{display:none}
+.player.playing .p-btn .pause{display:block}
+.p-title{font-size:12.5px;letter-spacing:.04em}
+.p-title span{color:var(--dim);display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:2px}
+.p-bar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.p-bar i{display:block;height:100%;width:23%;background:var(--amber)}
+.p-time{font-size:11px;color:var(--dim);font-family:'Inter',sans-serif}
+
+@media(max-width:720px){.hosts{grid-template-columns:1fr}.ep-dur{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo">MOVE<i>.</i></div>
+    <a class="nav-cta en" href="#subscribe">SUBSCRIBE</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap" style="position:relative;z-index:2">
+    <p class="kicker en">A Weekly Audio Program · Sean Kawakami × Ayia</p>
+    <h1 class="en">MOVE<span class="it">.</span></h1>
+    <p class="hero-sub">あなたの英語で、相手が動く。</p>
+    <p class="hero-desc">経営コンサルタント ショーン川上と、AIアシスタント Ayia が毎週届ける10分の英語番組。正確に話す英語から、機能する英語へ。</p>
+    <div class="hero-actions">
+      <button class="btn-play" onclick="startSample()"><span class="tri"></span>サンプル回を聴く（無料・9分）</button>
+      <a class="btn-ghost en" href="#about">WHAT IS MOVE →</a>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <span style="animation-delay:0s;height:30%"></span><span style="animation-delay:.2s;height:55%"></span><span style="animation-delay:.4s;height:80%"></span><span style="animation-delay:.1s;height:45%"></span><span style="animation-delay:.5s;height:95%"></span><span style="animation-delay:.3s;height:60%"></span><span style="animation-delay:.6s;height:75%"></span><span style="animation-delay:.15s;height:40%"></span><span style="animation-delay:.45s;height:88%"></span><span style="animation-delay:.25s;height:52%"></span><span style="animation-delay:.55s;height:70%"></span><span style="animation-delay:.05s;height:35%"></span><span style="animation-delay:.35s;height:82%"></span><span style="animation-delay:.65s;height:58%"></span><span style="animation-delay:.12s;height:44%"></span><span style="animation-delay:.42s;height:90%"></span><span style="animation-delay:.22s;height:50%"></span><span style="animation-delay:.52s;height:66%"></span><span style="animation-delay:.08s;height:38%"></span><span style="animation-delay:.38s;height:78%"></span><span style="animation-delay:.28s;height:56%"></span><span style="animation-delay:.58s;height:92%"></span><span style="animation-delay:.18s;height:48%"></span><span style="animation-delay:.48s;height:72%"></span>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="sec-label en">About the Program</p>
+    <h2>文法でも、発音でもない。<br>「届き方」の設計を、耳から。</h2>
+    <p class="lead">英語は悪くないのに、相手が動かない——その原因は語学力ではなく、文化と発想の構造差にあります。<strong>MOVE</strong> は、30年にわたり国際ビジネスの現場に立ってきたショーン川上が、AIアシスタント Ayia との掛け合いで「伝達の設計」を解き明かす、毎週10分のオーディオプログラムです。</p>
+    <div class="grid3">
+      <div class="cell">
+        <div class="num">01</div>
+        <h3>週1回、10分の番組</h3>
+        <p>通勤の片道で聴き切れる長さ。実際のビジネスシーンを題材に、Sean と Ayia が対話形式で深掘りします。</p>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <h3>テキスト解説つき</h3>
+        <p>毎回の配信には、コラムとキーフレーズの解説テキストが付属。5分で読める分量に凝縮しています。</p>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
+        <h3>いつものアプリで</h3>
+        <p>会員限定のポッドキャストとして配信。Apple Podcasts や Spotify など、普段のアプリでそのまま聴けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label en">Latest Episodes</p>
+    <h2>今週の配信</h2>
+    <div class="ep" onclick="startSample()">
+      <div class="ep-play"><span class="tri"></span></div>
+      <div>
+        <p class="ep-meta en">EP.004 · JUL 10, 2026</p>
+        <p class="ep-title">感情と事実の区別<span class="free-tag en">FREE</span></p>
+      </div>
+      <span class="ep-dur en">9:21</span>
+    </div>
+    <div class="ep">
+      <div class="ep-play"><span class="tri"></span></div>
+      <div>
+        <p class="ep-meta en">EP.011 · JUL 3, 2026</p>
+        <p class="ep-title">"I think" を封印すると、Assertion が立ち上がる</p>
+      </div>
+      <span class="ep-dur en">09:47</span>
+    </div>
+    <div class="ep">
+      <div class="ep-play"><span class="tri"></span></div>
+      <div>
+        <p class="ep-meta en">EP.010 · JUN 26, 2026</p>
+        <p class="ep-title">メールの件名だけで、相手の返信速度は変わる</p>
+      </div>
+      <span class="ep-dur en">10:12</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label en">Hosts</p>
+    <h2>ふたりの声</h2>
+    <div class="hosts">
+      <div class="host">
+        <div class="avatar">Sean</div>
+        <h3>ショーン川上</h3>
+        <p class="role en">Host / Management Consultant</p>
+        <p>経営コンサルタント。30年以上にわたり国際ビジネスの最前線で1,000人を超える経営者・プロフェッショナルと対話。J-WAVE「MAKE IT NEXT」ナビゲーター。著書『英語力の核心』（アルク）。</p>
+      </div>
+      <div class="host">
+        <div class="avatar"><span style="font-style:italic">Ayia</span></div>
+        <h3>Ayia</h3>
+        <p class="role en">AI Co-host</p>
+        <p>本番組のためにつくられたAIアシスタント。書籍『英語力の核心』付属音声でSeanと共演し、「本当にAIなのか」と読者を驚かせた。あらゆる言語と領域の知識を備え、ときどき人間のように笑う。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="subscribe">
+  <div class="wrap">
+    <p class="sec-label en">Membership</p>
+    <h2>毎週金曜、あなたの耳に。</h2>
+    <div class="price-box">
+      <p class="price en">¥980<small> / 月</small></p>
+      <p class="price-note">年額プラン ¥9,800（2カ月分お得）· いつでも解約できます</p>
+      <div class="perks">
+        <span class="perk">週1回の音声番組</span>
+        <span class="perk">テキスト解説</span>
+        <span class="perk">過去回アーカイブ聴き放題</span>
+        <span class="perk">月1回のQ&A回</span>
+      </div>
+      <button class="btn-play en" style="margin:0 auto">SUBSCRIBE ON SUBSTACK →</button>
+      <p style="font-size:11.5px;color:var(--dim);margin-top:22px">まずは無料版から。月1回の無料配信をメールでお届けします。</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span class="en">© 2026 MOVE. All rights reserved.</span>
+    <span>Sean Kawakami × Ayia · Produced by Shoichi Nakamura</span>
+  </footer>
+</div>
+
+<div class="player" id="player">
+  <div class="player-in">
+    <button class="p-btn" onclick="togglePlay(event)"><span class="tri"></span><span class="pause"></span></button>
+    <div class="p-title"><span class="en">EP.004 · Sample</span>感情と事実の区別</div>
+    <div class="p-bar" id="pbar" onclick="seek(event)"><i id="pfill" style="width:0%"></i></div>
+    <span class="p-time en" id="ptime">0:00 / 9:21</span>
+  </div>
+</div>
+
+<audio id="audio" src="ep04_sample.mp3" preload="metadata"></audio>
+
+<script>
+const audio = document.getElementById('audio');
+const player = document.getElementById('player');
+const pfill = document.getElementById('pfill');
+const ptime = document.getElementById('ptime');
+
+function fmt(s){ if(!isFinite(s)) return "0:00"; const m=Math.floor(s/60), r=Math.floor(s%60); return m+":"+String(r).padStart(2,"0"); }
+function startSample(){
+  player.classList.add('on');
+  audio.play();
+}
+function togglePlay(e){
+  e.stopPropagation();
+  audio.paused ? audio.play() : audio.pause();
+}
+function seek(e){
+  const r = document.getElementById('pbar').getBoundingClientRect();
+  audio.currentTime = ((e.clientX - r.left) / r.width) * (audio.duration || 0);
+}
+audio.addEventListener('play', ()=> player.classList.add('playing'));
+audio.addEventListener('pause', ()=> player.classList.remove('playing'));
+audio.addEventListener('timeupdate', ()=>{
+  if(audio.duration){ pfill.style.width = (audio.currentTime/audio.duration*100)+"%"; }
+  ptime.textContent = fmt(audio.currentTime)+" / "+fmt(audio.duration||561);
+});
+</script>
+</body>
+</html>
